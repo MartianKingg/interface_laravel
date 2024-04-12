@@ -9,6 +9,15 @@ class CustomerController extends Controller
 {
     // for view
     public function index(){
+        $customer = Customers::all();
+
+        $data = compact('customer');
+
+        return view('customer_view')->with($data);
+    }
+
+    // add customers
+    public function add_customer(){
         return view('customer_reg');
     }
 
@@ -43,17 +52,11 @@ class CustomerController extends Controller
         $customer->points = $request['points'];
         $customer->save();
 
-        return redirect('/customer/view');
+        return redirect('/customer');
 
     }
 
-    // view customer data
-    public function view(){
-        $customer = Customers::all();
-
-        $data = compact('customer');
-
-        return view('customer_view')->with($data);
-    }
+    
+   
 
 }

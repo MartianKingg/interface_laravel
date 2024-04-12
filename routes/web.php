@@ -41,5 +41,5 @@ Route::get('/customer',function(){
 
 // Route for customer 
 Route::get('/customer',[CustomerController::class, 'index']);
+Route::get('/customer/add_customer',[CustomerController::class, 'add_customer'])->name('customer.add_customer');
 Route::post('/customer/register',[CustomerController::class, 'register']);
-Route::get('/customer/view',[CustomerController::class, 'view']);
