@@ -54,6 +54,7 @@
                    <th>Country</th>
                    <th>Dob</th>
                    <th>Status</th>
+                   <th>Action</th>
                </tr>
                </thead>
                <tbody>
@@ -89,6 +90,19 @@
                             @else
                                 Inactive
                             @endif
+                        </td>
+
+                        <td>
+                            {{-- Here normal url function is used to pass id --}}
+                            <a href="{{url('/customer/edit')}}/{{$customers->customer_id}}">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                            </a>
+
+                            {{-- here route() is used to transfer id --}}
+                            {{-- id parameter in here and in route must be same --}}
+                            <a href="{{route('customer.delete', ['id' => $customers->customer_id])}}">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </a>
                         </td>
                        
                     </tr>
