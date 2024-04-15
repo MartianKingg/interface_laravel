@@ -59,19 +59,19 @@
 </head>
 <body>
     <div class="container">
-        <h2>Customer Registration Form</h2>
-        <form action="{{url('/')}}/customer/register" method="POST">
+        <h2>{{$title}}</h2>
+        <form action="{{$url}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" maxlength="60" value="{{old('name')}}">
+                <input type="text" id="name" name="name" maxlength="60" value="{{($customer->name) ? $customer->name : old('name')}}">
                 @error('name')
                     {{$message}}
                 @enderror
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" maxlength="100" value="{{old('email')}}">
+                <input type="email" id="email" name="email" maxlength="100" value="{{($customer->email) ? $customer->email : old('email')}}">
                 @error('email')
                     {{$message}}
                 @enderror
@@ -80,13 +80,13 @@
                 <label>Gender:</label>
                 <div class="gender-inputs">
                     <label for="male">
-                        <input type="radio" id="male" name="gender" value="M"> Male
+                        <input type="radio" id="male" name="gender" value="M" {{($customer->gender == 'M') ? 'checked' : ''}}> Male
                     </label>
                     <label for="female">
-                        <input type="radio" id="female" name="gender" value="F"> Female
+                        <input type="radio" id="female" name="gender" value="F" {{($customer->gender == 'F') ? 'checked' : ''}}> Female
                     </label>
                     <label for="other">
-                        <input type="radio" id="other" name="gender" value="O"> Other
+                        <input type="radio" id="other" name="gender" value="O" {{($customer->gender == 'O') ? 'checked' : ''}}> Other
                     </label>
 
                     @error('gender')
@@ -96,28 +96,28 @@
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <textarea id="address" name="address"></textarea>
+                <textarea id="address" name="address">{{($customer->address) ? $customer->address : old('address')}}</textarea>
                 @error('address')
                     {{$message}}
                 @enderror
             </div>
             <div class="form-group">
                 <label for="state">state:</label>
-                <input type="text" id="state" name="state" maxlength="60" value="{{old('state')}}">
+                <input type="text" id="state" name="state" maxlength="60" value="{{($customer->state) ? $customer->state : old('state')}}">
                 @error('state')
                     {{$message}}
                 @enderror
             </div>
             <div class="form-group">
                 <label for="country">country:</label>
-                <input type="text" id="country" name="country" maxlength="60" value="{{old('country')}}">
+                <input type="text" id="country" name="country" maxlength="60" value="{{($customer->country) ? $customer->country : old('country')}}">
                 @error('country')
                     {{$message}}
                 @enderror
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" value="{{old('dob')}}">
+                <input type="date" id="dob" name="dob" value="{{($customer->dob) ? $customer->dob : old('dob')}}">
                 @error('dob')
                     {{$message}}
                 @enderror
@@ -146,7 +146,7 @@
             </div> --}}
             <div class="form-group">
                 <label for="points">Points:</label>
-                <input type="number" id="points" name="points" value="0" min="0">
+                <input type="number" id="points" name="points" value="{{($customer->points) ? $customer->points : '0'}}" min="0">
                 <span class="note">Enter points if applicable</span>
 
                 @error('points')

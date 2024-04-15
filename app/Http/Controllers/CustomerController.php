@@ -18,7 +18,11 @@ class CustomerController extends Controller
 
     // add customers
     public function add_customer(){
-        return view('customer_reg');
+        $url = url('/customer/register');
+        $customer = new Customers; //for new customer 
+        $title = 'Add Customer';
+        $data = compact('url','title','customer');
+        return view('customer_reg')->with($data);
     }
 
     // for register
@@ -64,6 +68,42 @@ class CustomerController extends Controller
         }
 
         return redirect('/customer');
+    }
+
+    // edit
+    public function edit($id){
+        $customer = Customers::find($id); // to find for existing particular customers
+        
+        if(is_null($customer)){
+            //No data
+        }
+        else{
+            $url = url('/customer/update') . '/' . $id;
+            $title = 'Edit Customer';
+            $data = compact('customer','url','title');
+            return view('customer_reg')->with($data);
+        }
+       
+    }
+
+    // update
+    public function update($id, Request $request){
+        $customer = Customers::find($id);
+
+        
+        $customer->name = $request['name'];
+        $customer->email = $request['email'];
+        $customer->gender = $request['gender'];
+        $customer->address = $request['address'];
+        $customer->state = $request['state'];
+        $customer->country = $request['country'];
+        $customer->dob = $request['dob'];
+        $customer->password = $request['password'];
+        $customer->points = $request['points'];
+        $customer->save();
+
+        return redirect('/customer');
+        
     }
 
     

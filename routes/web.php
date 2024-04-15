@@ -44,3 +44,5 @@ Route::get('/customer',[CustomerController::class, 'index']);
 Route::get('/customer/add_customer',[CustomerController::class, 'add_customer'])->name('customer.add_customer');
 Route::post('/customer/register',[CustomerController::class, 'register']);
 Route::get('/customer/delete/{id}',[CustomerController::class, 'delete'])->name('customer.delete');
+Route::get('/customer/edit/{id}',[CustomerController::class, 'edit'])->name('customer.edit');
+Route::post('/customer/update/{id}',[CustomerController::class, 'update'])->name('customer.update');
