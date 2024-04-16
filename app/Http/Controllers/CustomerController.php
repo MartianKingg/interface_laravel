@@ -28,6 +28,7 @@ class CustomerController extends Controller
     // for register
     public function register(Request $request){
 
+        // p($request->all());die;
         // for validation
         $request->validate([
             'name' => 'required',
