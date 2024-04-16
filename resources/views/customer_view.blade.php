@@ -82,7 +82,9 @@
                         <td>{{$customers->address}}</td>
                         <td>{{$customers->state}}</td>
                         <td>{{$customers->country}}</td>
-                        <td>{{get_formatted_date($customers->dob, 'd-m-Y')}}</td>
+                        {{-- <td>{{get_formatted_date($customers->dob, 'd-m-Y')}}</td> --}}  
+                        <td>{{$customers->dob}}</td>  {{-- for accessor eg in laravel--}}
+
                         <td>
                             @if ($customers->status == 'Active')
                                 Active
