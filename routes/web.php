@@ -66,3 +66,37 @@ Route::middleware(['guard','web'])->group(function () {
     Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::post('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
 });
+
+Route::get('/loginCred', function () {
+    session()->put('user_id', 1);
+    return redirect('/dashboard');
+});
+
+Route::get('/logoutCred', function () {
+    session()->forget('user_id', 1);
+    return redirect()->back();
+});
+
+Route::get('/data', function(){
+    echo '<pre/>';
+    print_r(session()->all());
+});
+
+// Route::get('/dashboard', function(){
+//     echo 'Dashboard';
+    
+// })->middleware('validate');
+
+Route::middleware(['validate','web'])->group(function(){
+    // protected
+
+    Route::get('/data', function(){
+        echo '<pre/>';
+        print_r(session()->all());
+    });
+    
+    Route::get('/dashboard', function(){
+        echo 'Dashboard';
+        
+    });
+});

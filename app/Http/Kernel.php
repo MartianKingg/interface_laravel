@@ -22,6 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // \App\Http\Middleware\WebGuard::class
+        // \App\Http\Middleware\Validate::class
     ];
 
     /**
@@ -48,6 +49,11 @@ class Kernel extends HttpKernel
         'guard' => [
             \App\Http\Middleware\AgeCheck::class,
             \App\Http\Middleware\LoginCheck::class,
+        ],
+
+        'validate' => [
+            \App\Http\Middleware\Validate::class,
+            \App\Http\Middleware\ValidateLogin::class,
         ]
     ];
 
@@ -71,5 +77,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // 'guard' => \App\Http\Middleware\WebGuard::class
+        // 'validate' => \App\Http\Middleware\Validate::class
     ];
 }
